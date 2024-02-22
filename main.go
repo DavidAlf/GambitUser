@@ -22,9 +22,9 @@ func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostCo
 	awsgo.InicializoAWS()
 
 	if !ValidaParametros() {
-		fmt.Println("Error en los parametros, no encuentra el 'SecretName'")
+		fmt.Println("[EjecutoLambda]> [ERROR] Error en los parametros, no encuentra el 'SecretName'")
 
-		err := errors.New("Error en los parametros, no encuentra el 'SecretName'")
+		err := errors.New("[EjecutoLambda]> [ERROR] Error en los parametros, no encuentra el 'SecretName'")
 
 		return event, err
 	}
@@ -46,10 +46,14 @@ func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostCo
 	err := bd.ReadSecret()
 
 	if err != nil {
-		fmt.Println("> [ERROR] Error al leer el secret" + err.Error())
+		fmt.Println("[EjecutoLambda]> [ERROR] Error al leer el secret" + err.Error())
 
 		return event, err
 	}
+
+	err = bd.SingUp(datos)
+
+	return event, err
 
 }
 

@@ -13,7 +13,7 @@ import (
 func GetSecret(secretName string) (model.SecretRDSJson, error) {
 	var datosSecret model.SecretRDSJson
 
-	fmt.Println("> Opteniendo Secreto [" + secretName + "]")
+	fmt.Println("[GetSecret]> Opteniendo Secreto [" + secretName + "]")
 
 	svc := sm.NewFromConfig(awsgo.Cfg)
 
@@ -22,14 +22,14 @@ func GetSecret(secretName string) (model.SecretRDSJson, error) {
 	})
 
 	if err != nil {
-		fmt.Println("> [ERROR] Opteniendo datos de secret" + err.Error())
+		fmt.Println("[GetSecret]> [ERROR] Opteniendo datos de secret" + err.Error())
 
 		return datosSecret, err
 	}
 
 	json.Unmarshal([]byte(*llaveSecret.SecretString), &datosSecret)
 
-	fmt.Print("> Lectura Secret OKA [" + secretName + "]")
+	fmt.Print("[GetSecret]> Lectura Secret OKA [" + secretName + "]")
 
 	return datosSecret, nil
 
