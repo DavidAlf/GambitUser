@@ -20,7 +20,7 @@ func ReadSecret() error {
 }
 
 func DBConnect() error {
-	DB, err = sql.Open("mysl", ConnStr(SecretModel))
+	DB, err = sql.Open("mysql", ConnStr(SecretModel))
 
 	if err != nil {
 		fmt.Println("[DBConnect]>[ERROR] Error con el string de conexion a la bds " + err.Error())
