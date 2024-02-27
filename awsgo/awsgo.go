@@ -16,6 +16,6 @@ func InicializoAWS() {
 	Cfg, err = config.LoadDefaultConfig(Ctx, config.WithDefaultRegion("us-east-1"))
 
 	if err != nil {
-		panic("Error al cargar la configuraion .aws/config " + err.Error())
+		panic("[InicializoAWS]> Error al cargar la configuraion .aws/config " + err.Error())
 	}
 }

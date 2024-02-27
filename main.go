@@ -60,6 +60,7 @@ func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostCo
 func ValidaParametros() bool {
 	var traeParametro bool
 
+	fmt.Println("[ValidaParametros] OKA")
 	_, traeParametro = os.LookupEnv("SecretName")
 
 	return traeParametro

@@ -20,7 +20,7 @@ func SingUp(sing model.UserSingUp) error {
 
 	defer DB.Close()
 
-	stringSQL := "INSERT INTO users(User_email, User_UUID, User_DateAdd) VALUES ('" + sing.UserEmail + "', '" + sing.UserUUID + "', '" + tool.FechaMySQL() + "')"
+	stringSQL := "INSERT INTO users(User_email, User_UUID, User_DateAdd) VALUES ('" + sing.UserEmail + "', '" + sing.UserUUID + "', '" + tool.FechaMySQL() + "');"
 
 	fmt.Println(stringSQL)
 
