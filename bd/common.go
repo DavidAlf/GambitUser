@@ -11,32 +11,34 @@ import (
 )
 
 var SecretModel models.SecretRDSJson
+
 var err error
-var DB *sql.DB
 
 func ReadSecret() error {
 	SecretModel, err = secretm.GetSecret(os.Getenv("SecretName"))
 	return err
 }
 
-func DBConnect() error {
-	DB, err = sql.Open("mysql", ConnStr(SecretModel))
+func DBConnect() (*sql.DB, error) {
+	var db *sql.DB
+
+	db, err = sql.Open("mysql", ConnStr(SecretModel))
 
 	if err != nil {
 		fmt.Println("[DBConnect]>[ERROR] Error con el string de conexion a la bds " + err.Error())
-		return err
+		return nil, err
 	}
 
-	err = DB.Ping()
+	err = db.Ping()
 
 	if err != nil {
 		fmt.Println("[DBConnect]>[ERROR] Error con el ping de conexion a la bds " + err.Error())
-		return err
+		return nil, err
 	}
 
 	fmt.Println("[DBConnect]>Se conecto a la BDs OKA")
 
-	return nil
+	return db, nil
 }
 
 func ConnStr(claves models.SecretRDSJson) string {
@@ -49,7 +51,7 @@ func ConnStr(claves models.SecretRDSJson) string {
 
 	dns := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPasswords=true", dbUser, authToken, dbEndPoint, dbName)
 
-	fmt.Println(dns)
+	//fmt.Println(dns)
 
 	return dns
 }
