@@ -35,8 +35,8 @@ func DBConnect() error {
 	}
 
 	fmt.Println("[DBConnect]>Se conecto a la BDs OKA")
-	//diferente
-	return nil
+
+	return err
 }
 
 func ConnStr(claves models.SecretRDSJson) string {

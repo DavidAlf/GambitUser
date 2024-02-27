@@ -26,6 +26,8 @@ func SingUp(sing model.UserSingUp) error {
 
 	_, err = DB.Exec(stringSQL)
 
+	defer fmt.Println("NO SE POR QUE FALLA " + err.Error())
+
 	if err != nil {
 		fmt.Println("[SingUp]> [ERROR] Error insertando la persona " + err.Error())
 
