@@ -24,7 +24,7 @@ func SingUp(sing model.UserSingUp) error {
 
 	fmt.Println(stringSQL)
 
-	/*_, err = DB.Exec(stringSQL)*/
+	_, err = DB.Exec(stringSQL)
 
 	if err != nil {
 		fmt.Println("[SingUp]> [ERROR] Error insertando la persona " + err.Error())
@@ -33,6 +33,6 @@ func SingUp(sing model.UserSingUp) error {
 	}
 
 	fmt.Println("[SingUP]> Ejecucion Exitosa" + err.Error())
-	return err
 
+	return nil
 }

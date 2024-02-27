@@ -53,6 +53,8 @@ func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostCo
 
 	err = bd.SingUp(datos)
 
+	fmt.Println("XXX")
+
 	return event, err
 
 }
