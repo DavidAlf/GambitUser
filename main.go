@@ -8,9 +8,9 @@ import (
 	"os"
 
 	awsgo "github.com/DavidAlf/GambitUser/awsgo"
-	"github.com/DavidAlf/GambitUser/bd"
+	bd "github.com/DavidAlf/GambitUser/bd"
 	model "github.com/DavidAlf/GambitUser/models"
-	"github.com/aws/aws-lambda-go/events"
+	events "github.com/aws/aws-lambda-go/events"
 	lambda "github.com/aws/aws-lambda-go/lambda"
 )
 

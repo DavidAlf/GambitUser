@@ -20,13 +20,11 @@ func SingUp(sing model.UserSingUp) error {
 
 	defer DB.Close()
 
-	stringSQL := "INSERT INTO users(User_email, User_UUID, User_DateAdd) VALUES ('" + sing.UserEmail + "', '" + sing.UserUUID + "', '" + tool.FechaMySQL() + "');"
+	stringSQL := "INSERT INTO users(User_email, User_UUID, User_DateAdd) VALUES ('?', '?', '?');"
 
 	fmt.Println(stringSQL)
 
-	_, err = DB.Exec(stringSQL)
-
-	defer fmt.Println("NO SE POR QUE FALLA " + err.Error())
+	_, err = DB.Exec(stringSQL, sing.UserEmail, sing.UserUUID, tool.FechaMySQL())
 
 	if err != nil {
 		fmt.Println("[SingUp]> [ERROR] Error insertando la persona " + err.Error())
