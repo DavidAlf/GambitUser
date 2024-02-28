@@ -32,7 +32,7 @@ func SingUp(sing model.UserSingUp) error {
 		return err
 	}
 
-	fmt.Println("[SingUP]> Ejecucion Exitosa" + err.Error())
+	fmt.Println("[SingUP]> Ejecucion Exitosa")
 
 	return nil
 }

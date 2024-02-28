@@ -51,7 +51,7 @@ func ConnStr(claves models.SecretRDSJson) string {
 
 	dns := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPasswords=true", dbUser, authToken, dbEndPoint, dbName)
 
-	//fmt.Println(dns)
+	fmt.Println(dns)
 
 	return dns
 }
