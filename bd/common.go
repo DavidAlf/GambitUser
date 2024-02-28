@@ -29,16 +29,16 @@ func DBConnect() (*sql.DB, error) {
 		return nil, err
 	}
 
-	if err = db.Ping(); err != nil {
+	err = db.Ping()
+
+	if err != nil {
 		fmt.Println("[DBConnect]>[ERROR] Error con el ping de conexion a la bds " + err.Error())
 		return nil, err
-	} else {
-		fmt.Println("[DBConnect]>[ERROR] Ping status: OK")
 	}
 
 	fmt.Println("[DBConnect]>Se conecto a la BDs OKA")
 
-	return db, nil
+	return db, err
 }
 
 func ConnStr(claves models.SecretRDSJson) string {
