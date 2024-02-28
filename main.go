@@ -2,12 +2,11 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
 
 	"os"
 
-	awsgo "github.com/DavidAlf/GambitUser/awsgo"
+	//awsgo "github.com/DavidAlf/GambitUser/awsgo"
 	bd "github.com/DavidAlf/GambitUser/bd"
 	model "github.com/DavidAlf/GambitUser/models"
 	events "github.com/aws/aws-lambda-go/events"
@@ -19,7 +18,7 @@ func main() {
 }
 
 func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostConfirmation) (events.CognitoEventUserPoolsPostConfirmation, error) {
-	awsgo.InicializoAWS()
+	/*awsgo.InicializoAWS()
 
 	if !ValidaParametros() {
 		fmt.Println("[EjecutoLambda]> [ERROR] Error en los parametros, no encuentra el 'SecretName'")
@@ -27,11 +26,16 @@ func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostCo
 		err := errors.New("[EjecutoLambda]> [ERROR] Error en los parametros, no encuentra el 'SecretName'")
 
 		return event, err
-	}
+	}*/
 
 	var datos model.UserSingUp
 
-	for row, att := range event.Request.UserAttributes {
+	datos = model.UserSingUp{
+		UserEmail: "rokualfonso1@gmail.com",
+		UserUUID:  "123121",
+	}
+
+	/*for row, att := range event.Request.UserAttributes {
 		switch row {
 		case "email":
 			datos.UserEmail = att
@@ -41,7 +45,7 @@ func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostCo
 			datos.UserUUID = att
 			fmt.Println("UserId = [" + datos.UserUUID + "]")
 		}
-	}
+	}*/
 
 	err := bd.ReadSecret()
 

@@ -21,10 +21,13 @@ set TEXTO=%PARAM% - %DATE% - %TIME%
 
 git commit -m "%TEXTO%"
 
-git push
+#git push
 
 set GOOS=linux
 set GOARCH=amd64
+
+go env GOOS GOARCH
+
 go build -tags lambda.norpc -o bootstrap main.go
 del main.zip
 tar.exe -a -cf main.zip bootstrap
