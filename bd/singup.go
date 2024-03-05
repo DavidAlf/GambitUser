@@ -5,7 +5,9 @@ import (
 
 	model "github.com/DavidAlf/GambitUser/models"
 	tool "github.com/DavidAlf/GambitUser/tools"
-	_ "github.com/go-sql-driver/mysql"
+
+	/*_ "github.com/go-sql-driver/mysql"*/
+	_ "github.com/microsoft/go-mssqldb"
 )
 
 func SingUp(sing model.UserSingUp) error {
@@ -20,7 +22,7 @@ func SingUp(sing model.UserSingUp) error {
 
 	defer db.Close()
 
-	stringSQL := "INSERT INTO users(User_email, User_UUID, User_DateAdd) VALUES ('" + sing.UserEmail + "', '" + sing.UserUUID + "', '" + tool.FechaMySQL() + "');"
+	stringSQL := "INSERT INTO users(User_email, User_UUID, User_DateAdd) VALUES ('" + sing.UserEmail + "', '" + sing.UserUUID + "', convert(datetime,'" + tool.FechaSQLServer() + "'));"
 
 	fmt.Println(stringSQL)
 

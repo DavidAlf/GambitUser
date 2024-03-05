@@ -7,7 +7,9 @@ import (
 
 	models "github.com/DavidAlf/GambitUser/models"
 	secretm "github.com/DavidAlf/GambitUser/secretm"
-	_ "github.com/go-sql-driver/mysql"
+
+	/*_ "github.com/go-sql-driver/mysql"*/
+	_ "github.com/microsoft/go-mssqldb"
 )
 
 var SecretModel models.SecretRDSJson
@@ -22,7 +24,7 @@ func ReadSecret() error {
 func DBConnect() (*sql.DB, error) {
 	var db *sql.DB
 
-	db, err = sql.Open("mysql", ConnStr(SecretModel))
+	db, err = sql.Open("sqlserver", ConnStr(SecretModel))
 
 	if err != nil {
 		fmt.Println("[DBConnect]>[ERROR] Error con el string de conexion a la bds " + err.Error())
@@ -49,7 +51,9 @@ func ConnStr(claves models.SecretRDSJson) string {
 	dbEndPoint = claves.Host
 	dbName = "gambit"
 
-	dns := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPasswords=true", dbUser, authToken, dbEndPoint, dbName)
+	//dns := fmt.Sprintf("%s:%s@tcp(%s)/%s?allowCleartextPasswords=true", dbUser, authToken, dbEndPoint, dbName)
+
+	dns := fmt.Sprintf("sqlserver://%s:%s@%s?database=%s", dbUser, authToken, dbEndPoint, dbName)
 
 	fmt.Println(dns)
 
